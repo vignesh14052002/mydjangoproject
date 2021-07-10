@@ -2,15 +2,16 @@
 {% extends 'blog/base.html' %}
 {% load poll_extras %}
 {% block content %}
+	   <h2>choose your image and click upload</h2>
+	   <p> innu full ah develop panlaa  , ipothaiku image upload panna heart emoji vechu pattern varum , time irukapa full code um upload pandren </p><!--, ithu epdi work aaguthunu theriyanumna <br><a href="https://youtu.be/7QkKsIZya2I"> click here</a> </p>-->
+
 	   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-   {{ form.as_p }}
+   {{ imageform.as_p }}
   <button type="submit">Upload</button>
 </form>
 
 {% if img_obj %}
-<h2>{{img_obj.title}}</h2>
-<h2>{{location}}</h2>
 	{% for i in lines %}
   <p>{{i|nbsp}}</p>
   
