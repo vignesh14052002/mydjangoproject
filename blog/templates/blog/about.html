@@ -1,0 +1,22 @@
+
+{% extends 'blog/base.html' %}
+{% load poll_extras %}
+{% block content %}
+	   <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+{% if img_obj %}
+<h2>{{img_obj.title}}</h2>
+<h2>{{location}}</h2>
+	{% for i in lines %}
+  <p>{{i|nbsp}}</p>
+  
+{% endfor %}
+<img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
+
+{% endblock content %}
+
