@@ -2,22 +2,56 @@
 {% extends 'blog/base.html' %}
 {% load poll_extras %}
 {% block content %}
-	   <h2>choose your image and click upload</h2>
-	   <p> innu full ah develop panlaa  , ipothaiku image upload panna heart emoji vechu pattern varum , time irukapa full code um upload pandren </p><!--, ithu epdi work aaguthunu theriyanumna <br><a href="https://youtu.be/7QkKsIZya2I"> click here</a> </p>-->
-
-	   <form method="post" enctype="multipart/form-data">
+		<!--<h2>{{post}}</h2>-->
+	   <h2>Convert your image to pattern</h2>
+	   <!--<p> innu full ah develop panlaa  , ipothaiku image upload panna heart emoji vechu pattern varum , time irukapa full code um upload pandren </p>, ithu epdi work aaguthunu theriyanumna <br><a href="https://youtu.be/7QkKsIZya2I"> click here</a> </p>-->
+	   <p>choose your image ,set the parameters and click generate to generate the pattern , if no file is chosen default image "heart.png" will be loaded </p>
+	   <form method="post" enctype="multipart/form-data" id='imgform'>
   {% csrf_token %}
    {{ imageform.as_p }}
-  <button type="submit">Upload</button>
-</form>
+  <label>lower Color Threshold in greyscale:</label>
+ <input type="range" name='lct' value={{lct}} min="0" max="255" oninput="this.nextElementSibling.value = this.value">
+<output>{{lct}}</output>
+<br>
+  <label>upper Color Threshold in greyscale:</label>
+  <input type="range" name='uct' value={{uct}} min="0" max="255" oninput="this.nextElementSibling.value = this.value">
+<output>{{uct}}</output>
+  <br>
+  <label>Resolution:</label>
+<input type="range" name='resolution' value={{resolution}} min="5" max="30" oninput="this.nextElementSibling.value = this.value">
+<output>{{resolution}}</output>
+<br>
+  <button type="submit" name='upload' value='upload'>Generate Pattern</button>
+
+  
+  <button type="save" name='button' value='pressed'>Delete my file</button>
+  <br>
+  <h3>{{yourimage}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+  </form>
+  <h3>Output pattern</h3>
+  <button onclick="myFunction()">Copy to clipboard</button>
+  <textarea id="copyoutput" name="output" rows="10" cols="100">{{mytext}}</textarea>
+
+
 
 {% if img_obj %}
 	{% for i in lines %}
   <p>{{i|nbsp}}</p>
   
 {% endfor %}
-<img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+
 {% endif %}
 
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("copyoutput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("text copied to clipboard" );
+}
+</script>
 {% endblock content %}
 
