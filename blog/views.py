@@ -17,7 +17,7 @@ filepath=getpathcwd('words.txt')
 
 def home(request):
 	#context={'data':data}
-	return render(request,'blog/home.html')
+	return render(request,'blog/index.html')
 def imagetopattern(request):
 
 	if request.method == 'POST':
