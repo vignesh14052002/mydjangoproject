@@ -16,8 +16,32 @@ filepath=getpathcwd('words.txt')
 
 
 def home(request):
-	#context={'data':data}
-	return render(request,'blog/index.html')
+	context={'title':'home','blogcontent':blogcontent}
+	return render(request,'blog/home1.html',context)
+blogcontent=[{'author':'vignesh',
+					'date':'22/07/2021',
+					'title':'Myfirstblog'},
+					{'author':'vignesh',
+					'date':'22/07/2021',
+					'title':'Mysecondblog'}]
+def myblog(request):
+	context={'title':'blog','blogcontent':blogcontent}
+	
+	
+	if request.method == 'GET':
+		a=request.GET.get('btn')
+		if a==None:
+			return render(request,'blog/blog.html',context)
+		context={'title':a}
+		#f'blogcontent/{a}.html'
+		print(a)
+		print(f'blogcontent/{a}.html')
+		return render(request,f'blogcontent/{a}.html',context)	
+	return render(request,'blog/myblog.html',context)
+
+
+
+
 def imagetopattern(request):
 
 	if request.method == 'POST':
