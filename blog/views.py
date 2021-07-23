@@ -16,7 +16,7 @@ filepath=getpathcwd('words.txt')
 
 
 def home(request):
-	context={'title':'home','blogcontent':blogcontent}
+	context={'title':'home','blogcontent':blogcontent,'range':[pic(1,3),pic(3,5),pic(5,9)]}
 	return render(request,'blog/home1.html',context)
 blogcontent=[{'author':'vignesh',
 					'date':'22/07/2021',
@@ -24,6 +24,17 @@ blogcontent=[{'author':'vignesh',
 					{'author':'vignesh',
 					'date':'22/07/2021',
 					'title':'Mysecondblog'}]
+def about(request):
+	context={'title':'about'}
+	return render(request,'blog/about.html',context)
+def pic(a,b):
+	return [f'photography/pic{i}.jpg' for i in range(a,b)]
+def photography(request):
+	
+	context={'title':'photography','range':[pic(1,4),pic(4,7),pic(7,10),pic(10,12)]}
+	print(context['range'])
+	return render(request,'blog/photography.html',context)
+
 def myblog(request):
 	context={'title':'blog','blogcontent':blogcontent}
 	

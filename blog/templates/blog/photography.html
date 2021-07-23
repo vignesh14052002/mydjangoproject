@@ -1,0 +1,99 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+{% block section %}
+	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({% static 'blog/images/img_bg_1.jpg'%});">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>Photography</h1>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<div id="fh5co-blog" class="fh5co-bg-section">
+		<div class="container">
+
+				<!-- <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn"> -->
+					<div class="fh5co-staff">
+						<img src="{% static 'blog/images/person/santhosh.jpg'%}" alt="avatar">
+						<h3>Santhosh Chakaravarthy</h3>
+						<strong class="role">Photographer</strong>
+						<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+						<ul class="fh5co-social-icons">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble"></i></a></li>
+							<li><a href="#"><i class="icon-github"></i></a></li>
+
+						</ul>
+					</div>
+				<!-- </div> -->
+
+
+<div class="row">
+{% for i in range %}	
+  <div class="column">
+ {% for j in i %}
+    <img class="zoom" src="{% static j%}">
+  {% endfor %}
+  </div>
+ {% endfor %}
+</div>
+  </div>
+</div>
+
+<style type="text/css">
+	.zoom {
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+	.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+</style>
+{% endblock section %}

@@ -6,7 +6,7 @@
 					<div class="display-t">
 <div class="display-tc animate-box" data-animate-effect="fadeIn">
 <div class="row">
-		<h1>Viki/sandy website </h1>
+		<h1>General website </h1>
 
 <!-- 
 		<article class="media content-section">
@@ -32,8 +32,8 @@
 						<span class="icon">
 							<i class="icon-eye"></i>
 						</span>
-						<h3>Retina Ready</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						<h3>Aesthetic</h3>
+						<p>Have a pleasent experience with our aesthetic webpage look</p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
@@ -42,7 +42,7 @@
 							<i class="icon-command"></i>
 						</span>
 						<h3>Fully Responsive</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						<p> Experience responsive blog , photography , themes etc</p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
@@ -50,8 +50,8 @@
 						<span class="icon">
 							<i class="icon-mouse"></i>
 						</span>
-						<h3>Web Starter</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						<h3>Explore Varieties</h3>
+						<p>Explore different category content like photography , blog etc</p>
 					</div>
 				</div>
 			</div>
@@ -109,14 +109,71 @@
 		</div>
 	</div> -->
 	<div id="fh5co-testimonial" style="background-image:url({% static 'blog/images/img_bg_1.jpg' %});">
-		<div class="overlay"></div>
+		<!-- <div class="overlay"></div> -->
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Happy Clients</h2>
+					<h2>Recent Photography</h2>
+					<h3 style="color: white">have a look at our recent pics</h3>
 				</div>
 			</div>
-			<div class="row">
+<div class="rowpic">
+{% for i in range %}	
+  <div class="column">
+ {% for j in i %}
+    <img class="zoom" src="{% static j%}">
+  {% endfor %}
+  </div>
+ {% endfor %}
+</div>
+<style type="text/css">
+	.zoom {
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+	.rowpic {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+</style>		<!-- <div class="row">
 				<div class="col-md-4">
 					<div class="box-testimony animate-box">
 						<blockquote>
@@ -148,7 +205,7 @@
 					</div>
 					
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -157,7 +214,7 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Recent Blog</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					<p>Have a look at our recent blogs</p>
 				</div>
 			</div>
 			<div class="row">

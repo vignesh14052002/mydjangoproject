@@ -71,9 +71,11 @@
 			<div class="row">
 				<div class="left-menu text-right menu-1">
 					<ul>
-						<li><a href="work.html">Work</a></li>
-						<li><a href="about.html">About</a></li>
-						<li class="has-dropdown">
+						<!-- <li><a href="work.html">Work</a></li> -->
+						<li><a href="{% url 'blog-about'%}">About</a></li>
+						<li><a href="{% url 'blog-photography'%}">Photography</a></li>
+						
+						<!-- <li class="has-dropdown">
 							<a href="services.html">Services</a>
 							<ul class="dropdown">
 								<li><a href="#">Web Design</a></li>
@@ -81,7 +83,7 @@
 								<li><a href="#">Branding</a></li>
 								<li><a href="#">API</a></li>
 							</ul>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="logo text-center">
@@ -90,7 +92,7 @@
 				<div class="right-menu text-left menu-1">
 					<ul>
 						<li><a href="{% url 'blog-myblog'%}">blog</a></li>
-						<li class="has-dropdown">
+						<!-- <li class="has-dropdown">
 							<a href="#">Tools</a>
 							<ul class="dropdown">
 								<li><a href="#">HTML5</a></li>
@@ -98,8 +100,8 @@
 								<li><a href="#">Sass</a></li>
 								<li><a href="#">jQuery</a></li>
 							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
+						</li> -->
+						<!-- <li><a href="contact.html">Contact</a></li> -->
 						<!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
 					</ul>
 				</div>
@@ -107,7 +109,7 @@
 			
 		</div>
 	</nav>
-{% block blog %}
+{% block section %}
 	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({% static 'blog/images/img_bg_2.jpg'%});">
 
 		<div class="overlay"></div>
@@ -124,7 +126,7 @@
 		</div>
 	</header>
 	{% block home %}{% endblock home %}
-{% endblock blog %}
+{% endblock section %}
 		<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
