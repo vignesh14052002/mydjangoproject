@@ -1,0 +1,109 @@
+{% extends 'blogcontent/blogcontenttemplate.html' %}
+{% load static %}
+{% block subblog %}
+<style type="text/css">
+	pre{width: 50%;margin: 10%; text-align: left;}
+	.mydiv{text-align: left;margin: 10%;}
+</style>
+<div class="mydiv"><h2  style="color: black;">Image Encryption with python</h2>
+<p> Hello Everyone , i am vignesh ,this is my blog about image encryption with python <br> This was originally made in jupyter notebook in June 25 , 2020 in my <a style="color: blue;" href="https://github.com/vignesh14052002/pattern-programming-series">github repository</a> for my instagram page <a style="color: blue;" href="https://www.instagram.com/_._hello_world._._/?hl=en">helloworld</a></p>
+<p>Image encryption/decryption can be done in many ways , Here i am going to show you how you can encrypt/decrypt images by moving the pixel positions</p>
+
+<h3  style="color: black;">Image Encryption </h3>
+<p>Note : you must change the picture's path in the below code to your picture to be encrypted's path before running </p>
+<p>This method of encrypting by changing pixel's position can be easily done by the following steps</p>
+<ol>
+	<li>loading your Original Image</li>
+	<li>Saving your Image to an numpy array</li>
+	<li>Creating functions to shuffle image</li>
+	<li>shuffle the pixels for some iterations</li>
+	<li>Provide the key for decryption (key is the parameters used to encrypt)</li>
+	<li>Download/save your Encrypted image</li>
+</ol>
+<pre>
+<code>
+from PIL import Image
+import numpy,random,sys
+img=Image.open(r'C:\Users\Home\Pictures\gtaversion.jpg')
+#img.show()
+arr=numpy.asarray(img)
+arr1=arr.copy()
+x,y,z=arr.shape
+n=y-(random.randint(y//4,y//2))
+n1=x-(random.randint(x//4,x//2))
+m,m1=random.randint(1,10),random.randint(1,10)
+b,c=random.randint(1,10),random.randint(1,10)
+it=random.randint(50,200)
+def flip():
+	global x,b,n1
+	for i in range(b,x-1,n1*2):
+		arr1[i:i+n1]=numpy.fliplr(arr1[i:i+n1])
+def yflip():
+	global y,n,b
+	for i in range(b,y-1,n*2):
+		arr1[:,i:i+n]=numpy.fliplr(arr1[:,i:i+n])
+print('')
+for i in range(it):#encryption
+	flip()
+	c+=m
+	yflip()
+	b+=m1
+	print ('\r{}done'.format((i/it)*100),end='',flush=True)
+	sys.stdout.flush()
+print('')
+#text encryption
+li= [n,n1,m,m1,b,c,it]
+print('your key',' '.join(str(e) for e in li))
+
+
+enimg = Image.fromarray(numpy.uint8(arr1)).convert('RGB')
+enimg.show()
+enimg.save(r'C:\Users\Home\Pictures\New folder\sampleencrypt.jpg')
+</code>
+</pre>
+
+<h3  style="color: black;">Image Decryption </h3>
+<p>Note : you must change the picture's path in the below code to your picture to be encrypted's path before running </p>
+<p>This method of decrypting by changing pixel's position can be easily done by the following steps</p>
+<ol>
+	<li>loading your Encrypted Image</li>
+	<li>Saving your Image to an numpy array</li>
+	<li>Extract the encrypt parameters from the key</li>
+	<li>Reverse the encrypt function using key parameters</li>
+	<li>Download/save your Decrypted image</li>
+</ol>
+<pre>
+<code>
+from PIL import Image
+import numpy,random
+img=Image.open(r'C:\Users\Home\Pictures\New folder\sampleencrypt.jpg')
+arr=numpy.asarray(img)
+arr1=arr.copy()
+x,y,z=arr.shape
+#key
+li='1438 548 4 1 183 710 177'.split(' ')#enter key here
+li1=[int(i) for i in li]
+n,n1,m,m1,b,c,it=li1
+def flip():
+	global x,b,n1
+	for i in range(b,x-1,n1*2):
+		arr1[i:i+n1]=numpy.fliplr(arr1[i:i+n1])
+def yflip():
+	global y,n,b
+	for i in range(b,y-1,n*2):
+		arr1[:,i:i+n]=numpy.fliplr(arr1[:,i:i+n])
+
+for i in range(it):#decryption
+	b-=m1
+	yflip()
+	c-=m
+	flip()
+
+enimg = Image.fromarray(numpy.uint8(arr1)).convert('RGB')
+enimg.show()
+enimg.save(r'C:\Users\Home\Pictures\New folder\sampledecrypt.jpg')
+</code>
+</pre>
+
+</div>
+{% endblock subblog %}

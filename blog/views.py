@@ -16,14 +16,34 @@ filepath=getpathcwd('words.txt')
 
 
 def home(request):
-	context={'title':'home','blogcontent':blogcontent,'range':[pic(1,3),pic(3,5),pic(5,9)]}
+	context={'title':'home','blogcontent':blogcontent[:2],'range':[pic(1,3),pic(3,5),pic(5,9)]}
 	return render(request,'blog/home1.html',context)
+tpath=r'blogcontent/images/'
 blogcontent=[{'author':'vignesh',
-					'date':'22/07/2021',
-					'title':'Myfirstblog'},
+					'date':'24/07/2021',
+					'title':'Image Encryption with python',
+					'filename':'imageencryption',
+					'thumbnail':tpath+'imgencryption.jpeg',
+					'description':'I am going to show you how you can encrypt/decrypt images by moving the pixel positions'},
+					{'author':'vignesh',
+					'date':'24/07/2021',
+					'title':'Image processing with python - Part 2',
+					'filename':'imageprocessing2',
+					'thumbnail':tpath+'imageprocessing2.jpeg',
+					'description':'Second part of the blog Image Processing with python'},
 					{'author':'vignesh',
 					'date':'22/07/2021',
-					'title':'Mysecondblog'}]
+					'title':'Image processing with python',
+					'filename':'imageprocessing',
+					'thumbnail':tpath+'imageprocessing.jpeg',
+					'description':'In this blog i am going to discuss about Image Processing with python'},
+					{'author':'vignesh',
+					'date':'22/07/2021',
+					'title':'Pattern programming with python',
+					'filename':'patternprogramming',
+					'thumbnail':tpath+'patternprogramming.jpg',
+					'description':'Pattern programming will be very useful for beginners to understand about conditions(if,elseif,else) and loops(for ,while)'}
+					]
 def about(request):
 	context={'title':'about'}
 	return render(request,'blog/about.html',context)
@@ -41,8 +61,10 @@ def myblog(request):
 	
 	if request.method == 'GET':
 		a=request.GET.get('btn')
+		
 		if a==None:
 			return render(request,'blog/blog.html',context)
+		
 		context={'title':a}
 		#f'blogcontent/{a}.html'
 		print(a)
