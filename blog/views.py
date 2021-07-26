@@ -18,30 +18,46 @@ filepath=getpathcwd('words.txt')
 def home(request):
 	context={'title':'home','blogcontent':blogcontent[:2],'range':[pic(1,3),pic(3,5),pic(5,9)]}
 	return render(request,'blog/home1.html',context)
-tpath=r'blogcontent/images/'
+bpath=r'blogcontent/images/'
+ppath=r'projectcontent/images/'
+
+projectcontent=[{'author':'vignesh',
+					'date':'24/07/2021',
+					'title':'Javascript Projects',
+					'filename':'javascriptprojects',
+					'thumbnail':ppath+'javascript.png',
+					'description':'This section contains my interactable javascript projects '},
+					]
+javascriptprojectcontent=[{'author':'vignesh',
+					'date':'24/07/2021',
+					'title':'Bouncing Ball',
+					'filename':'javascriptprojects',
+					'thumbnail':ppath+'javascript.png',
+					'description':'Interactive Bouncing Ball '},
+					]
 blogcontent=[{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Image Encryption with python',
 					'filename':'imageencryption',
-					'thumbnail':tpath+'imgencryption.jpeg',
+					'thumbnail':bpath+'imgencryption.jpeg',
 					'description':'I am going to show you how you can encrypt/decrypt images by moving the pixel positions'},
 					{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Image processing with python - Part 2',
 					'filename':'imageprocessing2',
-					'thumbnail':tpath+'imageprocessing2.jpeg',
+					'thumbnail':bpath+'imageprocessing2.jpeg',
 					'description':'Second part of the blog Image Processing with python'},
 					{'author':'vignesh',
 					'date':'22/07/2021',
 					'title':'Image processing with python',
 					'filename':'imageprocessing',
-					'thumbnail':tpath+'imageprocessing.jpeg',
+					'thumbnail':bpath+'imageprocessing.jpeg',
 					'description':'In this blog i am going to discuss about Image Processing with python'},
 					{'author':'vignesh',
 					'date':'22/07/2021',
 					'title':'Pattern programming with python',
 					'filename':'patternprogramming',
-					'thumbnail':tpath+'patternprogramming.jpg',
+					'thumbnail':bpath+'patternprogramming.JPG',
 					'description':'Pattern programming will be very useful for beginners to understand about conditions(if,elseif,else) and loops(for ,while)'}
 					]
 def about(request):
@@ -67,12 +83,45 @@ def myblog(request):
 		
 		context={'title':a}
 		#f'blogcontent/{a}.html'
-		print(a)
 		print(f'blogcontent/{a}.html')
 		return render(request,f'blogcontent/{a}.html',context)	
 	return render(request,'blog/myblog.html',context)
 
 
+
+def projects(request):
+	context={'title':'blog','blogcontent':projectcontent}
+	
+	
+	if request.method == 'GET':
+		a=request.GET.get('btn')
+		
+		if a==None:
+			return render(request,'blog/project.html',context)
+		
+		context={'title':a}
+		#f'blogcontent/{a}.html'
+		print(a)
+		print(f'project/{a}.html')
+		return render(request,f'project/{a}.html',context)	
+	return render(request,'blog/myblog.html',context)
+
+def javascriptprojects(request):
+	context={'title':'javascriptprojects','blogcontent':javascriptprojectcontent}
+	
+	
+	if request.method == 'GET':
+		a=request.GET.get('btn')
+		
+		if a==None:
+			return render(request,'project/javascriptprojects.html',context)
+		
+		context={'title':a}
+		#f'blogcontent/{a}.html'
+		print(a)
+		print(f'project/{a}.html')
+		return render(request,f'project/{a}.html',context)	
+	return render(request,'blog/myblog.html',context)
 
 
 def imagetopattern(request):
