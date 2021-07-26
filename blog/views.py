@@ -20,7 +20,7 @@ def home(request):
 	return render(request,'blog/home1.html',context)
 bpath=r'blogcontent/images/'
 ppath=r'projectcontent/images/'
-
+jsppath=r'projectcontent/images/javascript/'
 projectcontent=[{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Javascript Projects',
@@ -28,12 +28,20 @@ projectcontent=[{'author':'vignesh',
 					'thumbnail':ppath+'javascript.png',
 					'description':'This section contains my interactable javascript projects '},
 					]
+def jspath(a):
+	return f'projectcontent/p5/{a}/index.html'
 javascriptprojectcontent=[{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Bouncing Ball',
-					'filename':'javascriptprojects',
-					'thumbnail':ppath+'javascript.png',
+					'filename':jspath('bouncingball'),
+					'thumbnail':jsppath+'bouncingball.gif',
 					'description':'Interactive Bouncing Ball '},
+					{'author':'vignesh',
+					'date':'24/07/2021',
+					'title':'Bubbles',
+					'filename':jspath('bubbles'),
+					'thumbnail':jsppath+'bubbles.gif',
+					'description':'Interactive bubbles '}
 					]
 blogcontent=[{'author':'vignesh',
 					'date':'24/07/2021',
@@ -65,6 +73,7 @@ def about(request):
 	return render(request,'blog/about.html',context)
 def pic(a,b):
 	return [f'photography/pic{i}.jpg' for i in range(a,b)]
+
 def photography(request):
 	
 	context={'title':'photography','range':[pic(1,4),pic(4,7),pic(7,10),pic(10,12)]}

@@ -20,15 +20,16 @@
 	<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row">
-<script src="{% static 'projectcontent/p5/p5.js' %}"></script>
+<!-- <script src="{% static 'projectcontent/p5/p5.js' %}"></script>
 <script src="{% static 'projectcontent/p5/empty-example/thumbnail.js' %}"></script>
-{% for i in blogcontent %}
+ -->{% for i in blogcontent %}
 				<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">
 						<div class="zoom">
-						<div id="sketch-container"></div>	
-						<!-- <img class="img-responsive" src="{% static i.thumbnail %}" alt="">
+						<!-- <div id="sketch-container"></div>	
 						 -->
+						 <img class="img-responsive" width="100%" height="100%" src="{% static i.thumbnail %}" alt="">
+						
 						<div class="blog-text">
 							<h3><a href=""#>{{i.title}}</a></h3>
 							<span class="posted_on">{{i.date}}</span>
@@ -36,7 +37,7 @@
 							 --><h4><a href=""#>Author : {{i.author}}</a></h4>
 							<p>{{i.description}}</p>
 							
-    						<a class="btn btn-primary" href="{% static 'projectcontent/p5/empty-example/index.html' %}">Open Script</a>
+    						<a class="btn btn-primary" href="{% static i.filename %}">Open Script</a>
 							
 						</div>
 						</div> 
