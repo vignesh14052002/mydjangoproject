@@ -20,7 +20,18 @@
 	<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row">
-
+<style type="text/css">
+	.img-responsive{
+		width: 100%;
+		height: 300px;
+	}
+</style>
+<form method="get" id='imgform1'>
+{% csrf_token %}
+<button class="btn btn-primary" type="submit" name="all" value='hello'>all</button>
+<button class="btn btn-primary" type="submit" name="programming" value='hello'>programming</button>
+<button class="btn btn-primary" type="submit" name="photography" value='hello'>photography</button>
+</form>
 {% for i in blogcontent %}
 				<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">

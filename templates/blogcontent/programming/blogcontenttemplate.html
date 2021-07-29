@@ -1,0 +1,28 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+{% block content %}
+<div class="row" style="margin-top: 150px;">
+        <div class="col-md-10 col-md-offset-1 text-center">
+          <div class="display-t">
+
+<div class="display-tc animate-box" data-animate-effect="fadeIn" style="background-color: white;  border-radius: 25px;
+">
+<a href="{% url 'blog-myblog'%}"><h3 style="color: black;">Back to blog</h3></a>
+  <div class="row" style="margin-right: 80;margin-left: 10;">
+<style>
+	.mydiv{
+		color: black;	
+}
+a{color: blue;
+}
+	
+</style>
+{% block subblog %}
+
+{% endblock subblog %}
+
+{% block gist %}
+
+{% endblock gist %}
+
+{% endblock content %}

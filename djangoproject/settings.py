@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ['vignesh2002.pythonanywhere.com','127.0.0.1:8000','127.0.0.1']
 MEDIA_URL = '/home/vignesh2002/mydjangoproject/media/'
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
+def templatepath(a):
+    return os.path.join(BASE_DIR, f'templates/{a}/')
 
 
 # Application definition
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'djangoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, f'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

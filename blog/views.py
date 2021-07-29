@@ -43,31 +43,119 @@ javascriptprojectcontent=[{'author':'vignesh',
 					'thumbnail':jsppath+'bubbles.gif',
 					'description':'Interactive bubbles '}
 					]
+def getpage(folder,file):
+	return f'blogcontent/{folder}/{file}.html'
+folder='programming'
 blogcontent=[{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Image Encryption with python',
-					'filename':'imageencryption',
+					'filename':getpage(folder,'imageencryption'),
 					'thumbnail':bpath+'imgencryption.jpeg',
 					'description':'I am going to show you how you can encrypt/decrypt images by moving the pixel positions'},
 					{'author':'vignesh',
 					'date':'24/07/2021',
 					'title':'Image processing with python - Part 2',
-					'filename':'imageprocessing2',
+					'filename':getpage(folder,'imageprocessing2'),
 					'thumbnail':bpath+'imageprocessing2.jpeg',
 					'description':'Second part of the blog Image Processing with python'},
 					{'author':'vignesh',
 					'date':'22/07/2021',
-					'title':'Image processing with python',
-					'filename':'imageprocessing',
+					'title':'Image processing with python - Part 1',
+					'filename':getpage(folder,'imageprocessing'),
 					'thumbnail':bpath+'imageprocessing.jpeg',
 					'description':'In this blog i am going to discuss about Image Processing with python'},
 					{'author':'vignesh',
 					'date':'22/07/2021',
 					'title':'Pattern programming with python',
-					'filename':'patternprogramming',
+					'filename':'blogcontent/patternprogramming.html',
 					'thumbnail':bpath+'patternprogramming.JPG',
 					'description':'Pattern programming will be very useful for beginners to understand about conditions(if,elseif,else) and loops(for ,while)'}
 					]
+tpath='photography/'
+folder='photography'
+photoblogcontent=[{'author':'Santhosh',
+					'date':'26/07/2021',
+					'title':'Eye',
+					'filename':getpage(folder,'eyeimage1'),
+					'thumbnail':tpath+'pic10.jpg',
+					'description':'Camera of our body is eye'},
+{'author':'Santhosh',
+					'date':'27/07/2021',
+					'title':'Hand',
+					'filename':getpage(folder,'handimage'),
+					'thumbnail':tpath+'pic1.jpg',
+					'description':'This image is made by stacking 2 to 3 images and processing it'},
+
+{'author':'Santhosh',
+					'date':'28/07/2021',
+					'title':'Spider',
+					'filename':getpage(folder,'spiderimage'),
+					'thumbnail':tpath+'pic11.jpg',
+					'description':'Learn how to work hard from our spidy friend'},
+
+{'author':'Santhosh',
+					'date':'29/07/2021',
+					'title':'Rose',
+					'filename':'roseimage',
+					'thumbnail':tpath+'pic12.jpg',
+					'description':'Tiatnic rose may leave you, but this rose will never'},
+
+{'author':'Santhosh',
+					'date':'30/07/2021',
+					'title':'Love birds',
+					'filename':'birdimage',
+					'thumbnail':tpath+'pic2.jpg',
+					'description':'Nature is full of love. Just take a look at it'},
+
+{'author':'Santhosh',
+					'date':'31/07/2021',
+					'title':'Eye',
+					'filename':'eyeimage2',
+					'thumbnail':tpath+'pic3.jpg',
+					'description':'Never underestimate the power of your vision'},
+
+{'author':'Santhosh',
+					'date':'01/08/2021',
+					'title':'Cat',
+					'filename':'catimage',
+					'thumbnail':tpath+'pic4.jpg',
+					'description':'Pussy cat '},
+
+{'author':'Santhosh',
+					'date':'02/08/2021',
+					'title':'Myna',
+					'filename':'mynaimage',
+					'thumbnail':tpath+'pic5.jpg',
+					'description':"If nature is a sony, then Myna's are the Rockstars"},
+{'author':'Santhosh',
+					'date':'03/08/2021',
+					'title':'Raindrop',
+					'filename':'rainimage',
+					'thumbnail':tpath+'pic6.jpg',
+					'description':'Raindrops '},
+
+{'author':'Santhosh',
+					'date':'04/08/2021',
+					'title':'Star Trials',
+					'filename':'starimage',
+					'thumbnail':tpath+'pic7.jpg',
+					'description':'If you this you are useless, just look t the sky. It will teach you many lessons'},
+
+{'author':'Santhosh',
+					'date':'05/08/2021',
+					'title':'Sun',
+					'filename':'sunimage',
+					'thumbnail':tpath+'pic8.jpg',
+					'description':'A nice composition is like a extra life for an image'},
+
+{'author':'Santhosh',
+					'date':'06/08/2021',
+					'title':'Butterfly',
+					'filename':'butterflyimage',
+					'thumbnail':tpath+'pic9.jpg',
+					'description':'Just when the caterpillar thought the life was over, she began to fly. '}]
+
+
 def about(request):
 	context={'title':'about'}
 	return render(request,'blog/about.html',context)
@@ -81,19 +169,30 @@ def photography(request):
 	return render(request,'blog/photography.html',context)
 
 def myblog(request):
-	context={'title':'blog','blogcontent':blogcontent}
+	blogcontent1=blogcontent.copy()
+	blogcontent1.extend(photoblogcontent)
+	context={'title':'blog','blogcontent':blogcontent1}
 	
 	
 	if request.method == 'GET':
-		a=request.GET.get('btn')
-		
-		if a==None:
+		if 'all' in request.GET:
 			return render(request,'blog/blog.html',context)
-		
-		context={'title':a}
-		#f'blogcontent/{a}.html'
-		print(f'blogcontent/{a}.html')
-		return render(request,f'blogcontent/{a}.html',context)	
+			
+		elif 'programming' in request.GET:
+			context['blogcontent']=blogcontent
+		elif 'photography' in request.GET:
+			context['blogcontent']=photoblogcontent
+		elif 'btn' in request.GET:
+			a=request.GET.get('btn')
+			print('sdsdad',a)
+			if a==None:
+				return render(request,'blog/blog.html',context)
+			
+			context={'title':a}
+			#f'blogcontent/{a}.html'
+			print(f'blogcontent/{a}.html')
+			return render(request,a,context)
+		return render(request,'blog/blog.html',context)	
 	return render(request,'blog/myblog.html',context)
 
 
