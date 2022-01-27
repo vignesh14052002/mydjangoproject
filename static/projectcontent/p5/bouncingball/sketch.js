@@ -8,10 +8,12 @@ function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent('sketch-container');
  x=windowWidth/2,y= windowHeight/2,i=12,j=20;
+ console.log(img)
 }
 
 function draw() {
    background(0);
+   image(img,0,0)
   if (x<size/2 || x>windowWidth-size/2){i=-i}
   if (y<size/2 || y>windowHeight-size/2){j=-j}
   x+=i*a

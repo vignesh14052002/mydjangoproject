@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import ImageForm
-import os
+import os,shutil
 from blog import imagetopattern as imtp
 from django.core.files.storage import FileSystemStorage
 
@@ -41,6 +41,12 @@ javascriptprojectcontent=[{'author':'vignesh',
 					'title':'Bubbles',
 					'filename':jspath('bubbles'),
 					'thumbnail':jsppath+'bubbles.gif',
+					'description':'Interactive bubbles '},
+					{'author':'vignesh',
+					'date':'28/08/2022',
+					'title':'Data Visualization',
+					'filename':jspath('datavis'),
+					'thumbnail':jsppath+'datavis.gif',
 					'description':'Interactive bubbles '}
 					]
 def getpage(folder,file):
@@ -243,13 +249,15 @@ def imagetopattern(request):
 		ucolour=request.POST.get('uct')
 		context['uct']=ucolour
 		#print('clr',lcolour,ucolour)
-		if request.POST.get('button') == 'pressed':
+		if request.POST.get('upload') == 'upload':
 			imgpath=getpathmain(r'media\images')
+			destpath=getpathmain(r'static\projectcontent\images\temp')
 			files = [f for f in os.listdir(imgpath)]
 			os.chdir(imgpath)
 			for i in files:
 				if not i == "heart.png":
-					os.remove(i)
+					#os.remove(i)
+					shutil.move(i,destpath)
 			return render(request,'blog/imagetopattern.html',context)
 		
 		elif imageform.is_valid():

@@ -28,9 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['vignesh2002.pythonanywhere.com','127.0.0.1:8000','127.0.0.1']
 
 # Base url to serve media files
-#MEDIA_URL = 'djangoproject/media/'
+MEDIA_URL = 'djangoproject/media/'
 # for pythonanywhere
-MEDIA_URL = '/home/vignesh2002/mydjangoproject/media/'
+#MEDIA_URL = '/home/vignesh2002/mydjangoproject/media/'
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 def templatepath(a):
@@ -48,6 +48,7 @@ INSTALLED_APPS = ['blog.apps.BlogConfig',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ ROOT_URLCONF = 'djangoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, f'templates/')],
+        'DIRS': [os.path.join(BASE_DIR, f'templates/'),os.path.join(BASE_DIR, f'templates/onlineapps')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +79,30 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangoproject.wsgi.application'
+#WSGI_APPLICATION = 'djangoproject.wsgi.application'
+ASGI_APPLICATION = 'djangoproject.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        ### Method 1: Via redis lab
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [
+        #       'redis://h:<password>;@<redis Endpoint>:<port>' 
+        #     ],
+        # },
+
+        ### Method 2: Via local Redis
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #      "hosts": [('127.0.0.1', 6379)],
+        # },
+
+        ### Method 3: Via In-memory channel layer
+        ## Using this method.
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
+}
+
 
 
 # Database
